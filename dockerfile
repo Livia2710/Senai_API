@@ -1,15 +1,11 @@
-FROM python:3.11-slin
+FROM python:3.11-slim
 WORKDIR /app
-RUN pip install --upgrade pip
-COPY requirements.txt
-RUN pip install --r requirements.txt
+RUN pip install --no-cache-dir --upgrade pip
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 COPY app/ ./app/
-  
-# criar usuario
-RUN addgroup --system appgroup
-RUN adduser --system --ingroup appgroup appuser
-  
-# Inicializar o container
+RUN addgroup --system appgroup && adduser --system --ingroup appgroup appuser
+
 USER appuser
 EXPOSE 8080
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0","--port","8080"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]
