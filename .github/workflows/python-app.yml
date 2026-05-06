@@ -45,8 +45,8 @@ jobs:
     - name: Build e Publish DockerHub
       uses: docker/build-push-action@v5
       with:
+        context: .
         push: true
         tags: |
            livia2710/senai_api_tb:latest
            livia2710/senai_api_tb:${{github.sha}}
-    
