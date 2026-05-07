@@ -70,7 +70,7 @@ jobs:
              sudo docker rm senai_api_tb 2>/dev/null || true
 
              #publicar o novo container
-             sudo docker run --name senai_api_tb -d --restart unless-stopped -p 80:8080 livia2710/senai_api_tb:tagname
+             sudo docker run --name senai_api_tb -d --restart unless-stopped -p 80:8000 livia2710/senai_api_tb:tagname
 
              #Verificar se publicou
              sleep 5
